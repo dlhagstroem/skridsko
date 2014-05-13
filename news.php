@@ -21,7 +21,7 @@ $content = <<<END
 	         <h2><?php echo $row->headingText ?></h2> 
 	         <p><?php echo $timeStamp; ?></p> <br/>
 	         <p><?php echo $row->bodyText ?></p> <br/>
-	         <p><?php echo $row->image ?></p> <br/>
+	         <img src="<?php echo $row->image ?>">
         </div>
 
 END;
