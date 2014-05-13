@@ -6,27 +6,22 @@ include_once('db.php');
 
 $mysqli->set_charset("utf8");
 
-while($row = $res->fetch_object()) :
-
 $query = 'SELECT *
- FROM Entry 
- INNER JOIN Designer 
- ON Entry.designerId=Designer.designerId
- GROUP BY Entry.entryName, Entry.entryImage, Entry.timeStamp, Designer.designerName, Designer.designerCity
- ORDER BY Entry.accepted ASC, Entry.timeStamp DESC';
+		  FROM news  
+		  GROUP BY news.newsId
+		  ORDER BY news.timeStamp DESC';
 
  $res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error);
 
 
 $content = <<<END
 
-		<div class="entryText">
-	         <h2><?php echo $row->entryName ?></h2> 
-	         <p><?php echo $entryDate; ?></p> <br/>
-	         <p><?php echo $row->designerName ?></p> <br/>
-	         <p><?php echo $row->designerCity ?></p> <br/>
-	         <p>Antal röster:</p>
-	         <p class="votes"><strong><?php echo $row->votes ?></strong></p>
+		<div>
+		while($row = $res->fetch_object()) :
+	         <h2><?php echo $row->headingText ?></h2> 
+	         <p><?php echo $timeStamp; ?></p> <br/>
+	         <p><?php echo $row->bodyText ?></p> <br/>
+	         <p><?php echo $row->image ?></p> <br/>
         </div>
 
 END;
