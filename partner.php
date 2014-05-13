@@ -17,7 +17,7 @@ $content = <<<END
 
 		<div>
 		while($row = $res->fetch_object()) : 
-	         <a href="<?php echo $->linkUrl ?>"><img src="<?php echo $row->imageUrl ?></a>">
+	         <a href="<?php echo $->linkUrl ?>"><img src="<?php echo $row->imageUrl ?>"</a>
         </div>
 
 END;
