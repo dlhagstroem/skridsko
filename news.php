@@ -22,6 +22,7 @@ $content = <<<END
 	         <p><?php echo $timeStamp; ?></p> <br/>
 	         <p><?php echo $row->bodyText ?></p> <br/>
 	         <img src="<?php echo $row->image ?>">
+	    endwhile;
         </div>
 
 END;
