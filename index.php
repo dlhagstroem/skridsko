@@ -24,6 +24,7 @@
                   <div class="large-12 small-12 columns">
      
                     <h4>Nyheter</h4><hr/>
+                    
                     <p>Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum odio ornare sagittis.
                     Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum odio ornare sagittis.
                     Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum odio ornare sagittis.
@@ -38,11 +39,11 @@
        
               <h4>Följ oss på</h4><hr/>
        
-              <a href="#">
+              <a href="https://www.facebook.com/konstakningsforbundet">
                   <img src="img/fb.png">
               </a>
               <br><br>
-              <a href="#">
+              <a href="https://twitter.com/skatesweden">
                 <img src="img/twitter.png">
               </a>
        

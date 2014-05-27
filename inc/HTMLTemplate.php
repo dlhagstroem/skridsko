@@ -32,7 +32,7 @@ $header = <<<END
       <aside class="left-off-canvas-menu">
         <ul class="off-canvas-list">
           <li><label>Huvudmeny</label></li>
-          <li><a href="#">NYHETER</a></li>
+          <li><a href="news.php">NYHETER</a></li>
           <li><a href="forbundsinfo.php">FÖRBUNDSINFO</a></li>
           <li><a href="#">FÖRENINGEN</a></li>
           <li><a href="#">OM KONSTÅKNING</a></li>
@@ -41,7 +41,7 @@ $header = <<<END
           <li><a href="#">BREDD</a></li>
           <li><a href="#">UTBILDNING</a></li>
           <li><a href="#">MEDIA</a></li>
-          <li><a href="#">KONTAKT</a></li>
+          <li><a href="contact.php">KONTAKT</a></li>
           <li><a href="#">WEBBSHOP</a></li>
         </ul>
       </aside>

@@ -14,18 +14,20 @@ $query = 'SELECT *
  $res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error);
 
 
+while($row = $res->fetch_object()) :
 $content = <<<END
 
 		<div>
-		while($row = $res->fetch_object()) :
+		
 	         <h2><?php echo $row->headingText ?></h2> 
 	         <p><?php echo $timeStamp; ?></p> <br/>
 	         <p><?php echo $row->bodyText ?></p> <br/>
 	         <img src="<?php echo $row->image ?>">
-	    endwhile;
+	    
         </div>
 
 END;
+endwhile;
 
 
 echo $header;
