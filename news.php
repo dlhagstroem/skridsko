@@ -19,10 +19,10 @@ $content = <<<END
 
 		<div>
 		
-	         <h2><?php echo $row->headingText ?></h2> 
-	         <p><?php echo $timeStamp; ?></p> <br/>
-	         <p><?php echo $row->bodyText ?></p> <br/>
-	         <img src="<?php echo $row->image ?>">
+	         <h2>$row->headingText</h2> 
+	         <p><$row->timeStamp</p> <br/>
+	         <p><$row->bodyText</p> <br/>
+	         <img src="$row->image">
 	    
         </div>
 

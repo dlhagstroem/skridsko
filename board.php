@@ -6,9 +6,9 @@
       $mysqli->set_charset("utf8");
 
       $query = 'SELECT *
-            FROM boardmembers  
-            GROUP BY boardmembers.board_ID
-            ORDER BY boardmembers.board_ID ASC';
+            FROM boardmember  
+            GROUP BY boardmember.boardId
+            ORDER BY boardmember.boardId ASC';
 
        $res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error);
 
@@ -61,11 +61,10 @@ END;
                
               $content .= <<<END
 
-               <img src="<?php echo $row->pic ?>">
-               <p><?php echo $row->f_name ?></p> 
-               <p><?php echo $row->l_name ?></p> <br/>
-               <p><?php echo $row->position ?></p> <br/>
-               <p><?php echo $row->m_phone ?></p> <br/>
+               <img src="$row->boardPic ">
+               <p>$row->firstName $row->lastName</p>
+               <p>$row->position </p> <br/>
+               <p>$row->mPhone</p> <br/>
 END;
           endwhile;
 

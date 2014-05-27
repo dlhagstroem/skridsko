@@ -13,22 +13,24 @@ $query = 'SELECT *
 
  $res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error);
 
+while($row = $res->fetch_object()) :
 
 $content = <<<END
 
 		<div>
-		while($row = $res->fetch_object()) :
-	         <h2><?php echo $row->firstName, lastName ?></h2> 
-	         <p><?php echo $row->age; ?></p> <br/>
-	         <p><?php echo $row->birthPlace ?></p> <br/>
-	         <p><?php echo $row->homeTown ?></p> <br/>
-	         <p><?php echo $row->height ?></p> <br/>
-	         <p><?php echo $row->careerStart ?></p> <br/>
-	         <p><?php echo $row->club ?></p> <br/>
-	    endwhile;
+			 <img src="$row->skaterPic ">
+	         <h2>$row->firstName $row->lastName</h2> 
+	         <p>Ålder: $row->age </p> <br/>
+	         <p>Födelsestad: $row->birthPlace</p> <br/>
+	         <p>Hemstad: $row->homeTown</p> <br/>
+	         <p>Längd: $row->height cm</p><br/>
+	         <p>Karriärstart: $row->careerStart</p> <br/>
+	         <p>Klubb: $row->club</p> <br/>
+	    
         </div>
 
 END;
+endwhile;
 
 
 echo $header;

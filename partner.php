@@ -12,16 +12,18 @@ $query = 'SELECT *
 
  $res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error);
 
+while($row = $res->fetch_object()) : 
 
 $content = <<<END
 
 		<div>
-		while($row = $res->fetch_object()) : 
-	         <a href="<?php echo $->linkUrl ?>"><img src="<?php echo $row->imageUrl ?>"</a>
-	    endwhile;
+		
+	         <a href="$row->linkUrl"><img src="$row->imageUrl"</a>
+	    
         </div>
 
 END;
+
 
 
 echo $header;
