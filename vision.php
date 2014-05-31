@@ -3,15 +3,7 @@
       include_once("inc/HTMLTemplate.php");
       include_once('db.php');
 
-      $mysqli->set_charset("utf8");
-
-      $query = 'SELECT *
-            FROM boardmembers  
-            GROUP BY boardmembers.board_ID
-            ORDER BY boardmembers.board_ID ASC';
-
-       $res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error);
-
+      
 
       $content = <<<END
 

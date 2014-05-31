@@ -21,12 +21,11 @@
         <div class="large-12 columns">
 
           <div class="row">
-            <div class="large-4 columns">
+            <div class="large-3 columns">
 
             <ul class="breadcrumbs">
               <li><a href="index.php">Hem</a></li>
-              <li><a href="contact.php">Kontakta Oss</a></li>
-              <li class="current"><a href="board.php">Styrelse</a></li>
+              <li class="current"><a href="contest.php">Tävlingar</a></li>
             </ul>
 
             </div>
@@ -37,23 +36,13 @@
           <div class="row">
             <div class="large-3 columns">
 
-              <div class="panel callout radius">
-                <h5>Förbundsinfo</h5>
-                
-                <ul class="side-nav">
-                  <li><a href="#">Förbundsnyheter</a></li>
-                  <li><a href="vision.php">Vision och verksamhet</a></li>
-                  <li><a href="board.php">Styrelse</a></li>
-                  <li><a href="#">Möten</a></li>
-                </ul>
-
-              </div>
+              
 
             </div>
 
             <div class="large-9 columns">
 
-            <h2>Styrelse</h2>
+            <h2>Tävlingar</h2>
             <p>
 END;
 
