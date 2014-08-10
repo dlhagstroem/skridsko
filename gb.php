@@ -5,7 +5,7 @@ Displays guestbook posts
 and handles adding of new posts
 ---------------------------*/
 
-include_once("inc/Connstring.php");
+include_once("inc/gb.php");
 include_once("inc/HTMLTemplate.php");
 
 $feedback = "";
