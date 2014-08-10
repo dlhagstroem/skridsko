@@ -1,6 +1,6 @@
 <?php
 include_once("inc/HTMLTemplate.php");
-include_once("inc/gb.php");
+include_once("inc/db.php");
 include_once("inc/Navigation.php");
 
 

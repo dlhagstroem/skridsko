@@ -1,7 +1,7 @@
 <?php
 
 include_once("inc/HTMLTemplate.php");
-include_once("inc/gb.php");
+include_once("inc/db.php");
 
 $postId = isset($_GET['pid']) ? $_GET['pid'] : '';
 
