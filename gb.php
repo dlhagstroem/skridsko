@@ -80,7 +80,7 @@ $query = <<<END
 --
 SELECT postId, postName, postMessage, postTimestamp, adminId
 FROM {$tablePost}
-ORDER BY postTimestamp DESC;
+ORDER BY postTime DESC;
 
 END;
 
@@ -118,20 +118,20 @@ END;
 	--
 	-- Gets all comments for current post from DB
 	--
-	SELECT commId, commName, commMessage, commTimestamp, adminId
+	SELECT postId, postName, postMessage, postTime, adminId
 	FROM {$tableComment}
 	WHERE postId = {$row->postId}
-	ORDER BY commTimestamp ASC;
+	ORDER BY postTime ASC;
 END;
 
 	$res2 = $mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error);
 
 	while ($row2 = $res2->fetch_object()) {
-		$date = strtotime($row2->commTimestamp);
+		$date = strtotime($row2->postTime);
 		$date = date("d M Y H:i",$date);
 
-		$commName = utf8_decode(htmlspecialchars($row2->commName));
-		$commMessage = utf8_decode(htmlspecialchars($row2->commMessage));
+		$commName = utf8_decode(htmlspecialchars($row2->postName));
+		$commMessage = utf8_decode(htmlspecialchars($row2->postMessage));
 
 		$adminRow2 = "";
 		$adminClass2 = (!is_null($row2->adminId)) ? " admin" : "";

@@ -21,7 +21,7 @@ $query = <<<END
 --
 -- Gets chosen post from DB
 --
-	SELECT postName, postMessage, postTimestamp
+	SELECT postName, postMessage, postTime
 	FROM {$tablePost}
 	WHERE postId = {$postId};
 	
@@ -60,7 +60,7 @@ END;
 			-- 
 			-- Inserts new comment into DB 
 			-- 
-			INSERT INTO {$tableComment}(commName, commMessage, postId, adminId)  VALUES('{$name}', '{$msg}', {$postId}, {$adminId});
+			INSERT INTO {$tableComment}(postName, postMessage, postId, adminId)  VALUES('{$name}', '{$msg}', {$postId}, {$adminId});
 END;
 
 			$res32 = $mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error);
@@ -73,7 +73,7 @@ END;
 
 $row = $res->fetch_object();
 
-$date = strtotime($row->postTimestamp);
+$date = strtotime($row->postTime);
 $date = date("d M Y H:i", $date); //http://php.net/manual/en/function.date.php
 
 $postName		=utf8_decode(htmlspecialchars($row->postName));
@@ -117,10 +117,10 @@ $query = <<<END
 	--
 	-- Gets all comments for chosen post from DB
 	--
-	SELECT commName, commMessage, commTimestamp
+	SELECT postName, postMessage, postTimestamp
 	FROM {$tableComment}
 	WHERE postId = {$postId}
-	ORDER BY commTimestamp ASC;
+	ORDER BY postTime ASC;
 	
 END;
 
@@ -128,11 +128,11 @@ $res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno
 	" : " . $mysqli->error);
 
 while($row = $res->fetch_object()){
-	$date = strtotime($row->commTimestamp);
+	$date = strtotime($row->postTime);
 	$date = date("d M Y H:i", $date);
 
-	$commName		= utf8_decode(htmlspecialchars($row->commName));
-	$commMessage	= utf8_decode(htmlspecialchars($row->commMessage));
+	$commName		= utf8_decode(htmlspecialchars($row->postName));
+	$commMessage	= utf8_decode(htmlspecialchars($row->postMessage));
 	
 	$content .= <<<END
 		<div class="gb-comm">

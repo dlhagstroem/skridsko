@@ -1,11 +1,11 @@
 <?php
 
-include_once("inc/connstring.php");
+include_once("inc/db.php");
 
 $postId = isset($_GET['pid']) ? $_GET['pid'] : '';
 
 $query =<<<END
-DELETE FROM post
+DELETE FROM Gb
 WHERE postId = $postId
 END;
 
