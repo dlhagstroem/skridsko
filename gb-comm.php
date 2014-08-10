@@ -149,7 +149,7 @@ END;
 	$mysqli->close();
 }
 
-echo $adminHTML;
+echo $header;
 echo $content;
 echo $footer
 

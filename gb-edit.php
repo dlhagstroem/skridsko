@@ -48,7 +48,7 @@ $updateForm = <<<END
 END;
 
 
-echo $adminHTML;
+echo $header;
 echo $postContent;
 echo $updateForm;
 echo $footer;

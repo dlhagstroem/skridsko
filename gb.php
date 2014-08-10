@@ -56,10 +56,39 @@ $name = isset($_SESSION["username"]) ? $_SESSION["username"] : $name;
 
 $name	= utf8_decode(htmlspecialchars($name));
 $msg	= utf8_decode(htmlspecialchars($msg));
-	
+
 $content = <<<END
-			<div id="container">
-				{$feedback}
+
+      <!-- under kommer start på all content -->
+
+      <div class="row">
+        <div class="large-12 columns">
+
+          <div class="row">
+            <div class="large-3 columns">
+
+            <ul class="breadcrumbs">
+              <li><a href="index.php">Hem</a></li>
+              <li class="current"><a href="gb.php">Gästboken</a></li>
+            </ul>
+
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="large-3 columns">
+
+         
+
+            </div>
+
+            <div class="large-9 columns">
+
+            <h2>Gästbok</h2>
+            <p>
+            	{$feedback}
 				<form action="gb.php" method="post">
 					<div><label for="name">Name:</label>
 					<input type="text" id="name" name="name" value="{$name}" /></div>
@@ -68,7 +97,16 @@ $content = <<<END
 					<textarea id="msg" name="msg">{$msg}</textarea></div>
 					<input type="submit" value="Submit" />
 				</form>
-			</div><!-- container -->
+            </p>
+
+            </div>
+          </div>  
+        </div>
+      </div>
+
+      <br>
+
+      <!-- här slutar contenten -->
 
 END;
 
@@ -158,7 +196,7 @@ $content .= "</div>";
 $res->close();
 $mysqli->close();
 
-echo $adminHTML;
+echo $header;
 echo $content;
 echo $footer;
 
