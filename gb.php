@@ -11,7 +11,7 @@ include_once("inc/HTMLTemplate.php");
 $feedback = "";
 $name = "";
 $msg = "";
-$tablePost = "post";
+$tablePost = "gb";
 $tableComment = "comment";
 if(!empty($_POST)) {
 		
@@ -78,7 +78,7 @@ $query = <<<END
 --
 -- Gets all posts DB
 --
-SELECT postId, postName, postMessage, postTimestamp, adminId
+SELECT postId, postName, postMessage, postTime, adminId
 FROM {$tablePost}
 ORDER BY postTime DESC;
 
