@@ -12,7 +12,7 @@ $feedback = "";
 $name = "";
 $msg = "";
 $tablePost = "gb";
-$tableComment = "comment";
+$tablepostMessage = "comment";
 if(!empty($_POST)) {
 		
 		$name =	isset($_POST['name']) ? $_POST['name'] : '';
@@ -126,7 +126,7 @@ $res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno
 
 //Loops trough results
 while($row = $res->fetch_object()) {
-	$date = strtotime($row->postTimestamp);
+	$date = strtotime($row->postTime);
 	$date = date("d M Y H:i", $date); //http://php.net/manual/en/function.date.php
 	
 	$postName		= utf8_decode(htmlspecialchars($row->postName));
@@ -157,7 +157,7 @@ END;
 	-- Gets all comments for current post from DB
 	--
 	SELECT postId, postName, postMessage, postTime, adminId
-	FROM {$tableComment}
+	FROM {$tablepostMessage}
 	WHERE postId = {$row->postId}
 	ORDER BY postTime ASC;
 END;

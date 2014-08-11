@@ -29,7 +29,7 @@ $res = $mysqli->query($query);
 while($row = $res->fetch_object()){
 	$name = $row->postName;
 	$msg = $row->postMessage;
-	$date = $row->postTimestamp;
+	$date = $row->postTime;
 	$postContent =<<<END
 	<p>
 	Written by: {$name} <br>

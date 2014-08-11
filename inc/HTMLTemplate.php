@@ -44,7 +44,7 @@ $header = <<<END
           <li><a href="contact.php">KONTAKT</a></li>
           <li><a href="#">WEBBSHOP</a></li>
           <li><a href="partner.php">SAMARBETSPARTNERS</a></li>
-          <li><a href="#">GÄSTBOK</a></li>
+          <li><a href="gb.php">GÄSTBOK</a></li>
 
         </ul>
       </aside>
