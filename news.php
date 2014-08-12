@@ -2,7 +2,7 @@
 
 
 include_once('inc/HTMLTemplate.php');
-include_once('db.php');
+include_once('inc/db.php');
 
 $mysqli->set_charset("utf8");
 
