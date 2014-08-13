@@ -1,7 +1,7 @@
 <?php
 include_once("inc/HTMLTemplate.php");
 include_once("inc/db.php");
-include_once("inc/Navigation.php");
+
 
 
 $table = "admin";
@@ -37,7 +37,7 @@ END;
 			$_SESSION['username'] = $username;
 			$_SESSION['userId'] = $row->adminId;
 
-			header("Location:home.php");
+			header("Location:gb.php");
 		}
 		else
 		{
@@ -66,8 +66,8 @@ END;
 
 /*show page contents*/
 
+
 echo $header;
-echo $navigation;
 echo $content;
 echo $feedback;
 echo $footer;

@@ -5,8 +5,9 @@ Displays guestbook posts
 and handles adding of new posts
 ---------------------------*/
 
-include_once("inc/Connstring.php");
+include_once("inc/db.php");
 include_once("inc/HTMLTemplate.php");
+include_once("inc/Navigation.php");
 
 $feedback = "";
 $name = "";
@@ -58,8 +59,41 @@ $name	= utf8_decode(htmlspecialchars($name));
 $msg	= utf8_decode(htmlspecialchars($msg));
 	
 $content = <<<END
-			<div id="container">
-				{$feedback}
+
+<div class="row">
+        <div class="large-12 columns">
+
+          <div class="row">
+            <div class="large-2 columns">
+
+            <ul class="breadcrumbs">
+              <li><a href="index.php">Hem</a></li>
+              <li class="current"><a href="gb.php">Gästbok</a></li>
+            </ul>
+
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="large-3 columns">
+
+              
+
+            </div>
+
+            <div class="large-9 columns">
+
+            <h2>Gästbok</h2>
+            <p>
+
+
+          
+               
+              
+
+          		 {$feedback}
 				<form action="gb.php" method="post">
 					<div><label for="name">Name:</label>
 					<input type="text" id="name" name="name" value="{$name}" /></div>
@@ -68,8 +102,8 @@ $content = <<<END
 					<textarea id="msg" name="msg">{$msg}</textarea></div>
 					<input type="submit" value="Submit" />
 				</form>
-			</div><!-- container -->
 
+               
 END;
 
 //-----------------
@@ -107,7 +141,9 @@ END;
 		<div class="gb-post{$adminClass}">
 			<p class="gb-name">Written by: {$postName}</p>
 			<p class="gb-msg">{$postMessage}</p>
-			<p><span class="gb-comment"><a href="gb-comm.php?id={$row->postId}">Write a comment</a></span>
+			<p><span class="gb-comment"><a href="gb-comm.php?id={$row->postId}">Skriv en kommentar</a></span>
+			<span class="gb-delete"><a href="gb-delete.php?id={$row->postId}">Ta bort</a></span>
+			<span class="gb-edit"><a href="gb-edit.php?id={$row->postId}">Ändra</a></span>
 			<span class="gb-date">{$date}</p>
 			{$adminRow}
 		</div>
@@ -153,12 +189,26 @@ END;
 	}
 }
 
-$content .= "</div>";
+
+
+        $content .= <<<END
+            </p>
+
+            </div>
+          </div>  
+        </div>
+      </div>
+
+      <br>
+
+      <!-- här slutar contenten -->
+
+END;
 
 $res->close();
 $mysqli->close();
 
-echo $adminHTML;
+
 echo $content;
 echo $footer;
 
