@@ -1,6 +1,6 @@
 <?php
 include_once("inc/HTMLTemplate.php");
-include_once("inc/db.php");
+include_once("inc/Connstring.php");
 $tableComment = "comment";
 $tablePost = 	"post";
 
@@ -149,7 +149,7 @@ END;
 	$mysqli->close();
 }
 
-echo $header;
+echo $adminHTML;
 echo $content;
 echo $footer
 
