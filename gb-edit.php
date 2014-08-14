@@ -6,10 +6,7 @@ Allows editing of chosen post or comment
 
 include_once("inc/HTMLTemplate.php");
 
-if(!isset($_SESSION["username"])) {
-	header("Location: index.php");
-	exit();
-}
+
 
 include_once("inc/db.php");
 $tablePost = 	"post";
@@ -65,18 +62,44 @@ END;
 		$mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error); //Performs query
 		
 		if($mysqli->affected_rows >= 1) {
-			$feedback = "The {$type} has been changed.";
+			$feedback = "Du har ändrat {$type}en.";
 		} else {
-			$feedback = "Something went wrong and the {$type} was not changed.";
+			$feedback = "Det blev fel, du har inte ändrat {$type}en.";
 		}
 		
 		$mysqli->close();
 		
 		$content = <<<END
-				<div id="container">
-					<p>{$feedback}</p>
-					<p><a href="gb.php">Back to guestbook</a></p>
-				</div><!-- container -->
+
+				<div class="row">
+        <div class="large-12 columns">
+
+          <div class="row">
+            <div class="large-4 columns">
+
+            <ul class="breadcrumbs">
+              <li><a href="index.php">Hem</a></li>
+              <li><a href="gb.php">Gästbok</a></li>
+              <li class="current"><a href="gb-edit.php">Ändra post</a></li>
+            </ul>
+
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="large-3 columns">
+
+              
+
+            </div>
+
+            <div class="large-9 columns">
+            		<p>{$feedback}</p>
+					<p><a href="gb.php">Tillbaka till gästboken</a></p>
+
+            
 END;
 	
 	}
@@ -137,21 +160,43 @@ function getFormHTML($type, $postId, $commId, $name, $msg, $feedback) {
 	$msg 	= htmlspecialchars($msg);
 	
 	return <<<END
-			<div id="breadcrumbs">
-				<p><a href="gb.php">Guestbook</a> &gt; Edit</p>
-			</div><!-- breadcrumbs -->
-			
-			<div id="container"> 
-				<h2>Edit the chosen {$type}</h2>
+
+
+			<div class="row">
+        <div class="large-12 columns">
+
+          <div class="row">
+            <div class="large-4 columns">
+
+            <ul class="breadcrumbs">
+              <li><a href="index.php">Hem</a></li>
+              <li><a href="gb.php">Gästbok</a></li>
+              <li class="current"><a href="gb-edit.php">Ändra post</a></li>
+            </ul>
+
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="large-3 columns">
+
+              
+
+            </div>
+
+            <div class="large-9 columns">
+
+            <h2>Ändra den valda {$type}en</h2>
 				{$feedback}
 				<form action="gb-edit.php?pid={$postId}&cid={$commId}" method="post">
-					<label for="name">Name:</label>
+					<label for="name">Namn:</label>
 					<input type="text" id="name" name="name" value="{$name}" />
-					<label for="msg">Message:</label>
+					<label for="msg">Meddelande:</label>
 					<textarea id="msg" name="msg">{$msg}</textarea>
-					<input type="submit" value="Save changes" />
+					<input type="submit" value="Spara ändringar" />
 				</form>
-			</div><!-- container -->
 	
 END;
 }

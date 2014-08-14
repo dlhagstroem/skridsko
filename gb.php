@@ -5,8 +5,9 @@ Displays guestbook posts
 and handles adding of new posts
 ---------------------------*/
 
-include_once("inc/Connstring.php");
+include_once("inc/db.php");
 include_once("inc/HTMLTemplate.php");
+include_once("inc/Navigation.php");
 
 $feedback = "";
 $name = "";
@@ -47,7 +48,7 @@ if(!empty($_POST)) {
 END;
 
 			$res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno. " : " . $mysqli->error); //Performs query
-			$feedback = "<p class=\"feedback-green\">Your post has been added. Thanks!</p>";
+			$feedback = "<p class=\"feedback-green\">Din post har lagts till. Tack!</p>";
 			
 	}
 }
@@ -58,18 +59,51 @@ $name	= utf8_decode(htmlspecialchars($name));
 $msg	= utf8_decode(htmlspecialchars($msg));
 	
 $content = <<<END
-			<div id="container">
-				{$feedback}
+
+<div class="row">
+        <div class="large-12 columns">
+
+          <div class="row">
+            <div class="large-2 columns">
+
+            <ul class="breadcrumbs">
+              <li><a href="index.php">Hem</a></li>
+              <li class="current"><a href="gb.php">Gästbok</a></li>
+            </ul>
+
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="large-3 columns">
+
+              
+
+            </div>
+
+            <div class="large-9 columns">
+
+            <h2>Gästbok</h2>
+            <p>
+
+
+          
+               
+              
+
+          		 {$feedback}
 				<form action="gb.php" method="post">
-					<div><label for="name">Name:</label>
+					<div><label for="name">Namn:</label>
 					<input type="text" id="name" name="name" value="{$name}" /></div>
 					<input type="hidden" id="address" name="address" />
-					<div><label for="msg">Message:</label></div><div>
+					<div><label for="msg">Meddelande:</label></div><div>
 					<textarea id="msg" name="msg">{$msg}</textarea></div>
 					<input type="submit" value="Submit" />
 				</form>
-			</div><!-- container -->
 
+               
 END;
 
 //-----------------
@@ -105,9 +139,11 @@ END;
 
 	$content .= <<<END
 		<div class="gb-post{$adminClass}">
-			<p class="gb-name">Written by: {$postName}</p>
+			<p class="gb-name">Skriven av: {$postName}</p>
 			<p class="gb-msg">{$postMessage}</p>
-			<p><span class="gb-comment"><a href="gb-comm.php?id={$row->postId}">Write a comment</a></span>
+			<p><span class="gb-comment"><a href="gb-comm.php?id={$row->postId}">Skriv en kommentar</a></span>
+			<span class="gb-delete"><a href="gb-delete.php?pid={$row->postId}">Ta bort</a></span>
+			<span class="gb-edit"><a href="gb-edit.php?pid={$row->postId}">Ändra</a></span>
 			<span class="gb-date">{$date}</p>
 			{$adminRow}
 		</div>
@@ -153,12 +189,26 @@ END;
 	}
 }
 
-$content .= "</div>";
+
+
+        $content .= <<<END
+            </p>
+
+            </div>
+          </div>  
+        </div>
+      </div>
+
+      <br>
+
+      <!-- här slutar contenten -->
+
+END;
 
 $res->close();
 $mysqli->close();
 
-echo $adminHTML;
+echo $header;
 echo $content;
 echo $footer;
 

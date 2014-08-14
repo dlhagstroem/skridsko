@@ -5,12 +5,6 @@ Deletes chosen post or comment from DB
 ----------------------*/
 
 include_once("inc/HTMLTemplate.php");
-
-if(!isset($_SESSION["username"])) {
-	header("Location: index.php");
-	exit();
-}
-
 include_once("inc/db.php");
 
 $tablePost = 	"post";
@@ -52,55 +46,103 @@ END;
 
 END;
 
-	} else if ($commId != '') {
-		$commId 	= $mysqli->real_escape_string($commId);
-		$type = "comment";
-		
-		//------------------------
-			//SQL query
-			$query = <<<END
+	}
+	
+
+	
+	$content = <<<END
+
+			<div class="row">
+        <div class="large-12 columns">
+
+          <div class="row">
+            <div class="large-4 columns">
+
+            <ul class="breadcrumbs">
+              <li><a href="index.php">Hem</a></li>
+              <li><a href="gb.php">Gästbok</a></li>
+              <li class="current"><a href="gb-delete.php">Ta bort inlägg</a></li>
+            </ul>
+
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="large-3 columns">
+
+              
+
+            </div>
+
+            <div class="large-9 columns">
+
+            <h2>Ta bort inlägg</h2>
+
+            <p><a href="gb.php">Tillbaka till gästboken</a></p>
+	
+END;
+} else {
+	$type = ($postId != '') ? "post" : "comment" ;
+
+	$content = <<<END
+			<div class="row">
+        <div class="large-12 columns">
+
+          <div class="row">
+            <div class="large-4 columns">
+
+            <ul class="breadcrumbs">
+              <li><a href="index.php">Hem</a></li>
+              <li><a href="gb.php">Gästbok</a></li>
+              <li class="current"><a href="gb-delete.php">Ta bort inlägg</a></li>
+            </ul>
+
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="large-3 columns">
+
+              
+
+            </div>
+
+            <div class="large-9 columns">
+
+            <h2>Ta bort inlägg</h2>
+            <p>
+
+
+            	<p>Är du säker på att du vill ta bort denna {$type}?</p>
+				<p><a href="gb-delete.php?pid={$postId}&cid={$commId}&s=y">Ja</a></p>
+	
+END;
+}
+
+$type = "post";
+
+$query = <<<END
 			--
-			-- Deletes chosen comment
+			-- Deletes chosen post
 			--
-			DELETE FROM {$tableComment}
-			WHERE commId = {$commId};
+			DELETE FROM {$tablePost}
+			WHERE postId = {$postId};
 
 END;
-	} 
-	
-	$mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error); //Performs query
-	
-	if($mysqli->affected_rows >= 1) {
+
+$mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error); //Performs query
+
+if($mysqli->affected_rows >= 1) {
 		$feedback = "The {$type} has been removed.";
 	} else {
 		$feedback = "Something went wrong and the {$type} was not removed.";
 	}
 	
 	$mysqli->close();
-	
-	$content = <<<END
-			<div id="breadcrumbs">
-				<p><a href="gb.php">Guestbook</a> &gt; Delete</p>
-			</div><!-- breadcrumbs -->
-			<div id="container">
-				<p>{$feedback}</p>
-				<p><a href="gb.php">Back to guestbook</a></p>
-			</div><!-- container -->
-END;
-} else {
-	$type = ($postId != '') ? "post" : "comment" ;
-
-	$content = <<<END
-			<div id="breadcrumbs">
-				<p><a href="gb.php">Guestbook</a> &gt; Delete</p>
-			</div><!-- breadcrumbs -->
-			<div id="container">
-				<p>Are you sure you want to remove the chosen {$type}?</p>
-				<p><a href="gb-delete.php?pid={$postId}&cid={$commId}&s=y">Yes</a></p>
-			</div><!-- container -->
-	
-END;
-}
 
 echo $header;
 echo $content;
